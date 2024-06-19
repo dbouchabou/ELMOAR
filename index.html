@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="ELMo, HAR, Smart Home, Human Activity Recognition">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Using Language Model to Bootstrap Human Activity Recognition Ambient Sensors Based in Smart Homes</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="#">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">
+              FCN HAR
+            </a>
+            <a class="navbar-item" href="#">
+              GPTHAR
+            </a>
+            <a class="navbar-item" href="#">
+              Virtual Smart Home
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Using Language Model to Bootstrap Human Activity Recognition
+              Ambient Sensors Based in Smart Homes</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://dbouchabou.github.io/">Damien Bouchabou</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="http://nguyensmai.free.fr/Home.html">Sao Mai Nguyen</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://labsticc.fr/fr/annuaire/lohr-christophe">Christophe Lohr</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Benoit LeDuc</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Ioannis Kanellos</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>
+                IMT Atlantique Engineer School, 29238 Brest, France,</span>
+              <span class="author-block"><sup>2</sup>
+                Delta Dore Company, 35270 Bonnemain, France</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://www.mdpi.com/2079-9292/10/20/2498"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/dbouchabou/Using-Language-Model-To-Bootstrap-Human-Activity-Recognition-In-Smart-Homes"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="https://casas.wsu.edu/datasets/" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Datasets</span>
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./static/images/workflow.png" class="interpolation-image" alt="Workflow." />
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf">ELMoAR (ELMo Activity Recognition)</span> – Enhancing human activity recognition in smart
+          homes!
+
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-two-thirds">
+          <h2 class="title is-2">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Long Short Term Memory (LSTM)-based structures have demonstrated their efficiency for daily living
+              recognition activities in smart homes by capturing the order of sensor activations and their temporal
+              dependencies. Nevertheless, they still fail in dealing with the semantics and the context of the sensors.
+              More than isolated id and their ordered activation values, sensors also carry meaning. Indeed, their
+              nature and type of activation can translate various activities. Their logs are correlated with each other,
+              creating a global context. We propose to use and compare two Natural Language Processing embedding methods
+              to enhance LSTM-based structures in activity-sequences classification tasks: <i>Word2Vec</i>, a static
+              semantic
+              embedding, and <i>ELMo</i>, a contextualized embedding. Results, on real smart homes datasets, indicate
+              that this
+              approach provides useful information, such as a sensor organization map, and makes less confusion between
+              daily activity classes. It helps to better perform on datasets with competing activities of other
+              residents or pets. Our tests show also that the embeddings can be pretrained on different datasets than
+              the target one, enabling transfer learning. We thus demonstrate that taking into account the context of
+              the sensors and their semantics increases the classification performances and enables transfer learning.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+  </section>
+
+  <!-- Approach. -->
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-two-thirds">
+          <h2 class="title is-2">Approach</h2>
+          <div class="content has-text-justified">
+            <p>
+              The proposed approach leverages advanced language models to enhance the contextual representation of IoT
+              activations, crucial for human activity recognition in smart homes. By encoding sparse and unevenly
+              spaced time series data, our method captures semantic and contextual information, smoothing out
+              variability and noise. This involves segmenting sensor data into event sequences, transforming these
+              sequences into categorical values, and pre-training embeddings like ELMo and Word2Vec from scratch over
+              IoT activations. Once pre-trained, these embeddings are frozen and used by a bidirectional LSTM classifier
+              to accurately label activities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Approach. -->
+
+  <!--/ Results -->
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-two-thirds">
+          <h2 class="title is-2">Results</h2>
+          <div class="content has-text-justified">
+            <p>In this study, we explored the unsupervised learning capabilities of Word2Vec and ELMo embeddings for
+              human activity recognition in smart homes. By pre-training these embeddings from scratch on IoT
+              activations, we demonstrated that ELMo, combined with a bidirectional LSTM classifier, significantly
+              outperforms other methods, including Word2Vec and the previous state-of-the-art model by Liciotti et al.
+              ELMo's context-aware embedding not only improved classification accuracy but also facilitated the
+              discovery of new activity patterns. Transfer learning experiments further highlighted ELMo's robustness,
+              showing that an ELMo model trained on one dataset (Aruba) effectively generalized to another (Cairo),
+              maintaining high performance despite different sensor setups. These results underscore the importance of
+              contextual embeddings in enhancing HAR in diverse and dynamic smart home environments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="content has-text-justified">
+            <table class="table is-bordered is-striped is-fullwidth">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th colspan="4">Aruba</th>
+                  <th colspan="4">Milan</th>
+                  <th colspan="4">Cairo</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th>No Embedding</th>
+                  <th>Liciotti</th>
+                  <th>W2V</th>
+                  <th>ELMo</th>
+                  <th>No Embedding</th>
+                  <th>Liciotti</th>
+                  <th>W2V</th>
+                  <th>ELMo</th>
+                  <th>No Embedding</th>
+                  <th>Liciotti</th>
+                  <th>W2V</th>
+                  <th>ELMo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Accuracy</td>
+                  <td>95.01</td>
+                  <td>96.52</td>
+                  <td>96.59</td>
+                  <td><b>96.76</b></td>
+                  <td>82.24</td>
+                  <td><b>90.54</b></td>
+                  <td>88.33</td>
+                  <td>90.14</td>
+                  <td>81.68</td>
+                  <td>84.99</td>
+                  <td>82.27</td>
+                  <td><b>90.12</b></td>
+                </tr>
+                <tr>
+                  <td>Precision</td>
+                  <td>94.69</td>
+                  <td>96.11</td>
+                  <td>96.23</td>
+                  <td><b>96.43</b></td>
+                  <td>82.28</td>
+                  <td>90.08</td>
+                  <td>88.28</td>
+                  <td><b>90.20</b></td>
+                  <td>80.22</td>
+                  <td>83.17</td>
+                  <td>82.04</td>
+                  <td><b>88.41</b></td>
+                </tr>
+                <tr>
+                  <td>Recall</td>
+                  <td>95.01</td>
+                  <td>96.50</td>
+                  <td>96.59</td>
+                  <td><b>96.69</b></td>
+                  <td>82.24</td>
+                  <td><b>90.45</b></td>
+                  <td>88.33</td>
+                  <td>90.31</td>
+                  <td>81.68</td>
+                  <td>82.98</td>
+                  <td>82.27</td>
+                  <td><b>87.59</b></td>
+                </tr>
+                <tr>
+                  <td>F1 score</td>
+                  <td>94.74</td>
+                  <td>96.22</td>
+                  <td>96.32</td>
+                  <td><b>96.42</b></td>
+                  <td>81.97</td>
+                  <td>90.02</td>
+                  <td>87.98</td>
+                  <td><b>90.10</b></td>
+                  <td>80.49</td>
+                  <td>82.18</td>
+                  <td>81.14</td>
+                  <td><b>87.48</b></td>
+                </tr>
+                <tr>
+                  <td>Balance Accuracy</td>
+                  <td>77.73</td>
+                  <td>79.96</td>
+                  <td><b>81.06</b></td>
+                  <td>79.98</td>
+                  <td>67.77</td>
+                  <td>74.31</td>
+                  <td>73.61</td>
+                  <td><b>78.25</b></td>
+                  <td>70.09</td>
+                  <td>77.52</td>
+                  <td>69.38</td>
+                  <td><b>87.00</b></td>
+                </tr>
+                <tr>
+                  <td>Weighted Precision</td>
+                  <td>79.75</td>
+                  <td>82.30</td>
+                  <td>82.97</td>
+                  <td><b>88.64</b></td>
+                  <td>79.60</td>
+                  <td>82.03</td>
+                  <td>84.42</td>
+                  <td><b>87.56</b></td>
+                  <td>68.45</td>
+                  <td>80.03</td>
+                  <td>77.56</td>
+                  <td><b>86.83</b></td>
+                </tr>
+                <tr>
+                  <td>Weighted Recall</td>
+                  <td>77.73</td>
+                  <td>80.71</td>
+                  <td><b>81.06</b></td>
+                  <td>79.17</td>
+                  <td>67.77</td>
+                  <td>75.51</td>
+                  <td>73.62</td>
+                  <td><b>78.75</b></td>
+                  <td>70.09</td>
+                  <td>73.82</td>
+                  <td>69.38</td>
+                  <td><b>84.78</b></td>
+                </tr>
+                <tr>
+                  <td>Weighted F1 score</td>
+                  <td>77.92</td>
+                  <td>81.21</td>
+                  <td>81.43</td>
+                  <td><b>82.93</b></td>
+                  <td>71.81</td>
+                  <td>77.74</td>
+                  <td>76.59</td>
+                  <td><b>82.26</b></td>
+                  <td>68.47</td>
+                  <td>74.84</td>
+                  <td>70.95</td>
+                  <td><b>84.71</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--/ Results -->
+
+  <!-- BibTeX. -->
+  <section class="section" id="BibTeX">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-two-thirds">
+          <h2 class="title is-4">BibTeX</h2>
+          <pre>
+          <code>
+@article{bouchabou2021using,
+  title={Using language model to bootstrap human activity recognition ambient sensors based in smart homes},
+  author={Bouchabou, Damien and Nguyen, Sao Mai and Lohr, Christophe and LeDuc, Benoit and Kanellos, Ioannis},
+  journal={Electronics},
+  volume={10},
+  number={20},
+  pages={2498},
+  year={2021},
+  publisher={MDPI}
+}
+          </code>
+        </pre>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ BibTeX. -->
+
+  <!-- Acknowledgements. -->
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-two-thirds">
+          <h2 class="title is-2">Acknowledgements</h2>
+          <div class="content has-text-justified">
+            <p>The work is partially supported by the project <a
+                href="https://www.imt-atlantique.fr/fr/recherche-innovation/collaborer/projet/vitaal"><span
+                  class="dnerf">VITAAL</span></a> and is financed by Brest Metropole, the Region of Brittany, and the
+              European Regional Development Fund (ERDF). This work was carried out in the context of a CIFRE agreement
+              with the company <a href="https://www.deltadore.fr/"><span class="dnerf">Delta Dore</span></a> in Bonemain
+              35270, France,
+              managed by the National Association of Technical Research (ANRT) in France.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Acknowledgements. -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>Page template borrowed from <a href="https://nerfies.github.io/"><span class="dnerf">Nerfies</span></a>.</p>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+</body>
+
+</html>
