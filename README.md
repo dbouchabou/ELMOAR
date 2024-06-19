@@ -1,6 +1,6 @@
 # ELMoAR
 
-This is the repository that contains source code for the [ELMoAR website](https://nerfies.github.io).
+This is the repository that contains source code for the [ELMoAR website](https://dbouchabou.github.io/ELMoAR/).
 
 If you find ELMOAR useful for your work please cite:
 ```
